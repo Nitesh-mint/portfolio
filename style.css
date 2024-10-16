@@ -1,0 +1,237 @@
+:root {
+	--purple: #023e8a;
+	--background-black: #212529;
+	--text-white: #e9ecef;
+}
+
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+	scroll-behavior: smooth;
+}
+
+body {
+	/* background-color: var(--background-black); */
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+
+body a{
+	text-decoration: none;	
+}
+
+.text-white{
+	color: var(--text-white) !important;
+}
+.text-black{
+	color: var(--background-black) !important;
+}
+
+/* Navigation bar starting*/
+.nav {
+	top: 0;
+	position: sticky;
+	display: flex;
+	justify-content:end; 
+	align-items: center;
+	gap: 14px;
+	text-decoration: none;
+	padding-top: 30px;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	padding-right: 300px;
+	background: transparent;
+	backdrop-filter: blur(5px);
+	z-index: 100;
+}
+
+.nav a {
+	color: var(--background-black);
+	text-decoration: none;
+	font-size: 20px;
+	font-weight: 500;
+	position: relative;
+	z-index: 2;
+}
+
+.slider {
+	position: absolute;
+	background-color: black;
+	height: 40px;
+	transition: left 0.6s ease, width 0.3s ease;
+	backdrop-filter: blur(8px);
+	z-index: 1;
+	border-radius: 10px;
+}
+
+/* Responsive: Adjust font size and padding for smaller screens */
+@media (max-width: 768px) {
+    .navbar a {
+        font-size: 16px;
+        padding: 8px 10px;
+    }
+
+    /* Make the slider shorter in height on smaller screens */
+    .slider {
+        height: 30px; /* Reduce the height of the slider */
+        transition: left 0.3s ease, width 0.3s ease; /* Smooth transitions */
+    }
+
+	/* self-container page for mobile devices */
+	.self-container{
+		flex-direction: column;
+		align-items:center !important;
+		justify-content:start !important;
+		height: fit-content;
+	}
+
+	.self-container .my-container .name{
+		font-size: 15px;
+	}
+
+	.self-container .my-container .role{
+		font-size: 7.5px;
+	}
+}
+
+/* Navigation bar ending */
+
+/* self-container page starting */
+.self-container{
+	display: flex;
+	align-self: center;
+	flex-wrap: wrap;
+	height: fit-content;
+	width: 70%;
+	/* background-color: purple; */
+}
+
+.self-container .my-container{
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	justify-content: center;
+	/* background-color: red; */
+	padding: 10px;
+}
+.self-container .my-container .name{
+	font-size: 40px;
+	font-weight:800;
+	letter-spacing: 3px;
+}
+
+.self-container .my-container .role{
+	font-weight: 500;
+	font-size: 20px;
+}
+
+
+.self-container .my-image{
+	display: flex;
+	flex: 1;
+	/* background-color: pink; */
+	justify-content: center;
+	align-items: center;
+}
+.self-container .my-image img{
+	width: 40%;
+	border-radius: 15%;
+}
+
+.self-container .my-container .about-short{
+	padding-top: 1rem;
+	font-size: 13px;
+}
+
+.tech-stack{
+	/* background-color: green; */
+	flex:1 1 100%;
+	padding: 10px;
+	padding-top: 20px;
+	/* font-size: 20px; */
+}
+
+.tech-stack h1{
+	padding-bottom: 10px;
+}
+
+.tech-stack ul li{
+	display: inline;
+	list-style-type: none;
+	padding: 5px;
+	padding-left: 0;
+}
+.tech-stack ul li svg{
+	width: 30px;
+}
+
+.self-container .about{
+	flex: 1 1 100%;
+	padding: 10px;
+}
+.self-container .about h1{
+	padding-top: 30px;
+	padding-bottom: 5px;
+}
+
+.self-container .projects{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	flex: 1 1 100%;
+	padding: 10px;
+	/* background-color: red; */
+}
+.self-container .projects h1{
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+
+.self-container .projects .cards-container{
+	display: flex;
+	gap: 20px;
+	/* background-color: pink; */
+}
+.self-container .projects .project-card{
+	border: 1px solid black;
+	width: fit-content;
+	padding: 10px;
+	/* height: 100px; */
+	flex: 1;
+}
+
+.self-container .projects .project-card .project-title{
+	color: var(--background-black);
+	font-size: 28px;
+	font-weight: 800;
+}
+
+.self-container .projects .project-card .project-description{
+	color: #36454F;
+	font-size: 15px;
+	padding-top: 5px;
+}
+
+.self-container .project-card .project-tech{
+	display: flex;
+	gap: 10px;
+}
+
+.self-container .project-card .project-tech span{
+	font-size: 10px;
+	padding: 5px;
+	margin-top: 5px;
+	border-radius: 10%;
+	background-color: #36454F;
+	color: white;
+}
+
+.self-container .projects .project-card:hover{
+	backdrop-filter: blur(5px);
+}
