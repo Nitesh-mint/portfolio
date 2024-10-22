@@ -269,16 +269,21 @@ body a{
 	.self-container .my-image{
 		justify-content: flex-start;
 		width: 70%;
+		padding-left: 10px;
 	}
-
+	.self-container .tech-stack {
+		padding-bottom: 10px;
+	}
 	.self-container .tech-stack h1{
 		font-size: 25px;
 	}
 	.self-container .about{
 		overflow-wrap: break-word;
+		padding-bottom: 10px;
 		/* width: 90%; */
 	}
 	.self-container .about h1{
+		padding-top:0px;
 		font-size: 25px;
 	}
 	.self-container .about p{
@@ -290,6 +295,7 @@ body a{
 	}
 
 	.self-container .projects h1{
+		padding-top: 0;
 		font-size: 25px;
 	}
 	.self-container .projects .project-card .project-title{
