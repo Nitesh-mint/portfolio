@@ -21,6 +21,7 @@ body {
 	flex-wrap: wrap;
 	flex-direction: column;
 	padding-left: 50px;
+	padding: 0 50px 50px;
 }
 
 body a{
@@ -46,7 +47,7 @@ body a{
 	padding-top: 30px;
 	padding-bottom: 10px;
 	margin-bottom: 10px;
-	padding-right: 300px;
+	/* padding-right: 300px; */
 	background: transparent;
 	backdrop-filter: blur(5px);
 	z-index: 100;
@@ -74,7 +75,7 @@ body a{
 }
 
 .gap{
-	width: 52%;
+	width: 70%;
 }
 
 
@@ -225,17 +226,23 @@ body a{
 /* Responsive: Adjust font size and padding for smaller screens */
 @media (max-width: 768px) {
 	body{
-		display: block;
+		display:flex;
+		padding-left:30px;
+		justify-content: flex-start;
+		width: 100%;
 	}
 	.nav{
 		justify-content: flex-start;
-		padding-left: 10px;
+		width: 90%;
 	}
     .nav a {
         font-size: 16px;
         padding: 8px 10px;
 		display: none;
     }
+	.gap{
+		display: none;
+	}
 
     /* Make the slider shorter in height on smaller screens */
     .slider {
@@ -247,9 +254,7 @@ body a{
 	/* self-container page for mobile devices */
 	.self-container{
 		flex-direction: column;
-		align-items: start;
-		height: fit-content;
-		width: 100%;
+		width: 90%;
 	}
 
 
@@ -269,7 +274,10 @@ body a{
 	.self-container .tech-stack h1{
 		font-size: 25px;
 	}
-
+	.self-container .about{
+		overflow-wrap: break-word;
+		/* width: 90%; */
+	}
 	.self-container .about h1{
 		font-size: 25px;
 	}
