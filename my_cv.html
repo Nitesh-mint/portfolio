@@ -1,41 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My CV</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     <style>
-        #pdf-canvas {
-            width: 100%; /* Responsive scaling */
-            /* max-width: 800px; Adjust as needed */
-            height: auto;
+        body {
+            margin: 0;
+            padding: 0;
+            /* overflow: hidden; Prevent any unnecessary scrolling */
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            /* Ensure canvas is centered */
         }
     </style>
 </head>
-<body>
-    <canvas id="pdf-canvas"></canvas> 
-</body>
-    <script>
-        var url = 'files/cv.pdf';
-        console.log(url);
 
-        pdfjsLib.getDocument(url).promise.then(function (pdf) {
-            pdf.getPage(1).then(function (page) {
-                var scale = 2.0;
+<body>
+    <canvas id="pdf-canvas"></canvas>
+</body>
+<script>
+    var url = 'files/cv_new.pdf';
+    console.log("PDF URL: " + url);
+
+    pdfjsLib.getDocument(url).promise.then(function (pdf) {
+        console.log("PDF loaded, total pages: " + pdf.numPages);
+        var scale = 2.0;
+
+        function renderPage(pageNum) {
+            pdf.getPage(pageNum).then(function (page) {
                 var viewport = page.getViewport({ scale: scale });
 
-                var canvas = document.getElementById('pdf-canvas');
-                var context = canvas.getContext('2d');
+                // Create a new canvas element for the page
+                var canvas = document.createElement('canvas');
+                canvas.id = 'pdf-canvas-' + pageNum;
+
+                // Set canvas dimensions according to the page viewport
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
 
+                // Render the page into the canvas context
+                var context = canvas.getContext('2d');
                 var renderContext = {
                     canvasContext: context,
                     viewport: viewport
                 };
-                page.render(renderContext);
+
+                // Render the page, then append the canvas to the body after rendering
+                page.render(renderContext).promise.then(function () {
+                    console.log("Page " + pageNum + " rendered");
+                    document.body.appendChild(canvas);
+                });
+            }).catch(function (error) {
+                console.error("Error rendering page " + pageNum + ": ", error);
             });
-        }); 
-    </script>
+        }
+
+        // Loop over the pages and render each one
+        for (var pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+            renderPage(pageNum);
+        }
+    }).catch(function (error) {
+        console.error("Error loading PDF: ", error);
+    });
+</script>
+
 </html>
