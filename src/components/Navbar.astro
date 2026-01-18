@@ -1,0 +1,149 @@
+---
+import { Sun, Moon, Menu } from "lucide-react";
+---
+
+<nav
+    class="fixed top-0 left-0 right-0 z-[1000] flex justify-center p-0 pointer-events-none border-b border-border-primary bg-white/80 backdrop-blur-md dark:bg-black/80"
+>
+    <div
+        class="pointer-events-auto relative flex items-center justify-between px-8 py-4 w-full max-w-[1200px] border-x-[3px] border-border-primary"
+    >
+        <a
+            href="/"
+            class="text-xl font-black tracking-tighter uppercase font-display border-[3px] border-border-primary px-2 py-1 bg-text-primary text-bg-primary hover:bg-bg-primary hover:text-text-primary transition-colors duration-100"
+        >
+            N
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-6">
+            <ul class="flex gap-4 font-bold font-mono uppercase text-base">
+                <li>
+                    <a
+                        href="/verify-css"
+                        class="px-4 py-2 border-[3px] border-transparent hover:border-border-primary hover:bg-text-primary hover:text-bg-primary transition-all duration-100"
+                    >
+                        Verify
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Theme Toggle -->
+            <button
+                class="theme-toggle flex items-center justify-center w-12 h-12 bg-transparent border-[3px] border-border-primary shadow-[4px_4px_0_var(--border-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_var(--border-color)] hover:bg-text-primary hover:text-bg-primary active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all duration-100 cursor-pointer"
+                aria-label="Toggle Theme"
+            >
+                <!-- Sun Icon -->
+                <Sun className="w-6 h-6 dark:hidden" />
+                <!-- Moon Icon -->
+                <Moon className="w-6 h-6 hidden dark:block" />
+            </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="flex md:hidden gap-2">
+            <button
+                class="theme-toggle flex items-center justify-center w-12 h-12 bg-transparent border-[3px] border-border-primary shadow-[4px_4px_0_var(--border-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_var(--border-color)] hover:bg-text-primary hover:text-bg-primary active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all duration-100 cursor-pointer"
+                aria-label="Toggle Theme"
+            >
+                <!-- Sun Icon -->
+                <Sun className="w-6 h-6 dark:hidden" />
+                <!-- Moon Icon -->
+                <Moon className="w-6 h-6 hidden dark:block" />
+            </button>
+            <button
+                id="mobile-menu-btn"
+                class="md:hidden flex items-center justify-center w-12 h-12 bg-transparent border-[3px] border-border-primary shadow-[4px_4px_0_var(--border-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_var(--border-color)] hover:bg-text-primary hover:text-bg-primary active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all duration-100 cursor-pointer"
+                aria-label="Toggle Menu"
+            >
+                <Menu className="w-6 h-6" />
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div
+            id="mobile-menu"
+            class="hidden absolute top-full left-0 right-0 bg-bg-primary border-b-[3px] border-x-[3px] border-border-primary flex flex-col pointer-events-auto"
+        >
+            <a
+                href="/"
+                class="block text-center p-4 border-b border-border-primary text-xl font-bold font-mono uppercase text-text-primary hover:bg-text-primary hover:text-bg-primary transition-colors"
+            >
+                Home
+            </a>
+            <a
+                href="/about"
+                class="block text-center p-4 border-b border-border-primary text-xl font-bold font-mono uppercase text-text-primary hover:bg-text-primary hover:text-bg-primary transition-colors"
+            >
+                About
+            </a>
+            <a
+                href="/work"
+                class="block text-center p-4 border-b border-border-primary text-xl font-bold font-mono uppercase text-text-primary hover:bg-text-primary hover:text-bg-primary transition-colors"
+            >
+                Work
+            </a>
+            <a
+                href="/verify-css"
+                class="block text-center p-4 text-xl font-bold font-mono uppercase text-text-primary hover:bg-text-primary hover:text-bg-primary transition-colors"
+            >
+                Verify
+            </a>
+        </div>
+    </div>
+</nav>
+
+<script>
+    const themeToggles = document.querySelectorAll(".theme-toggle");
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    // Theme Logic
+    const getTheme = () => {
+        if (
+            typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")
+        ) {
+            return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            return "dark";
+        }
+        return "light";
+    };
+
+    const setTheme = (theme) => {
+        if (theme === "dark") {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+    };
+
+    // Initial load
+    setTheme(getTheme());
+
+    // Listen for manual toggle
+    themeToggles.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const isDark = document.documentElement.classList.contains("dark");
+            const newTheme = isDark ? "light" : "dark";
+            setTheme(newTheme);
+            localStorage.setItem("theme", newTheme);
+        });
+    });
+
+    // Listen for system changes (only if no manual override)
+    window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (e) => {
+            if (!localStorage.getItem("theme")) {
+                setTheme(e.matches ? "dark" : "light");
+            }
+        });
+
+    // Mobile Menu Logic
+    mobileMenuBtn?.addEventListener("click", () => {
+        mobileMenu?.classList.toggle("hidden");
+    });
+</script>

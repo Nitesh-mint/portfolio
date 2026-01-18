@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+    /* Colors */
+    --color-bg-primary: var(--bg-color);
+    --color-text-primary: var(--text-color);
+    --color-text-muted: var(--text-muted);
+    --color-accent: var(--accent-color);
+    --color-accent-hover: var(--accent-hover);
+    --color-border-primary: var(--border-color);
+
+    /* Fonts */
+    --font-sans: "Space Mono", monospace;
+    --font-display: "Archivo Black", sans-serif;
+    --font-mono: "Space Mono", monospace;
+
+    /* Spacing/Sizing */
+    --border-width-3: 3px;
+}
+
+/* Custom Base Styles */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --text-muted: #444444;
+    --accent-color: #000000;
+    --accent-hover: #333333;
+    --border-color: #000000;
+
+    --font-sans: "Space Mono", monospace;
+    --font-display: "Archivo Black", sans-serif;
+}
+
+:root.dark {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --text-muted: #bbbbbb;
+    --accent-color: #ffffff;
+    --accent-hover: #cccccc;
+    --border-color: #ffffff;
+}
+
+/* Utility classes for Brutalist look */
+@layer components {
+    .btn-brutal {
+        @apply inline-block px-8 py-4 bg-transparent text-text-primary border-[3px] border-border-primary font-bold uppercase cursor-pointer transition-all duration-100 shadow-[5px_5px_0_var(--border-color)];
+        font-family: var(--font-mono);
+    }
+
+    .btn-brutal:hover {
+        @apply translate-x-[2px] translate-y-[2px] shadow-[3px_3px_0_var(--border-color)] bg-text-primary text-bg-primary;
+    }
+
+    .btn-brutal:active {
+        @apply translate-x-[5px] translate-y-[5px] shadow-none;
+    }
+
+    .card-brutal {
+        @apply border-[3px] border-border-primary p-6 bg-bg-primary shadow-[8px_8px_0_var(--border-color)] transition-transform duration-100;
+    }
+
+    .card-brutal:hover {
+        @apply -translate-x-[2px] -translate-y-[2px] shadow-[10px_10px_0_var(--border-color)];
+    }
+}
+
+/* Custom Cursor & Selection */
+body {
+    cursor: crosshair;
+}
+
+::selection {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}

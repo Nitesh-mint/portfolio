@@ -1,0 +1,33 @@
+---
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import SectionTracker from "../components/SectionTracker.astro";
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Nitesh Raya</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bg-bg-primary text-text-primary font-sans antialiased">
+		<Navbar />
+		<SectionTracker />
+		<main
+			class="w-full max-w-[1200px] mx-auto border-x-[3px] border-border-primary min-h-screen pt-24"
+		>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

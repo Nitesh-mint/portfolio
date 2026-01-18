@@ -1,0 +1,171 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <main class="container mx-auto p-8 max-w-4xl space-y-12">
+        <!-- Header -->
+        <header class="border-b-[3px] border-border-primary pb-8">
+            <h1 class="font-display text-5xl uppercase tracking-tighter mb-4">
+                Style Verification
+            </h1>
+            <p class="font-mono text-text-muted uppercase tracking-widest">
+                Neo-Brutalism Design System
+            </p>
+        </header>
+
+        <!-- Typography Section -->
+        <section class="space-y-6">
+            <h2
+                class="font-display text-3xl uppercase border-b-[3px] border-border-primary inline-block mb-4"
+            >
+                Typography
+            </h2>
+            <div class="space-y-4">
+                <div>
+                    <span class="text-xs font-mono text-text-muted block mb-1"
+                        >Display Font (Archivo Black)</span
+                    >
+                    <h1 class="font-display text-4xl">
+                        The quick brown fox jumps
+                    </h1>
+                </div>
+                <div>
+                    <span class="text-xs font-mono text-text-muted block mb-1"
+                        >Mono Font (Space Mono)</span
+                    >
+                    <p class="font-mono text-lg">
+                        The quick brown fox jumps over the lazy dog. 0123456789
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Colors Section -->
+        <section class="space-y-6">
+            <h2
+                class="font-display text-3xl uppercase border-b-[3px] border-border-primary inline-block mb-4"
+            >
+                Colors
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="space-y-2">
+                    <div
+                        class="h-24 bg-bg-primary border-[3px] border-border-primary shadow-[4px_4px_0_var(--border-color)]"
+                    >
+                    </div>
+                    <p class="font-mono text-sm">Background</p>
+                </div>
+                <div class="space-y-2">
+                    <div
+                        class="h-24 bg-text-primary border-[3px] border-border-primary shadow-[4px_4px_0_var(--border-color)]"
+                    >
+                    </div>
+                    <p class="font-mono text-sm">Text Primary</p>
+                </div>
+                <div class="space-y-2">
+                    <div
+                        class="h-24 bg-text-muted border-[3px] border-border-primary shadow-[4px_4px_0_var(--border-color)]"
+                    >
+                    </div>
+                    <p class="font-mono text-sm">Text Muted</p>
+                </div>
+                <div class="space-y-2">
+                    <div
+                        class="h-24 bg-white border-[3px] border-border-primary shadow-[4px_4px_0_var(--border-color)]"
+                    >
+                    </div>
+                    <p class="font-mono text-sm">White</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Components Section -->
+        <section class="space-y-6">
+            <h2
+                class="font-display text-3xl uppercase border-b-[3px] border-border-primary inline-block mb-4"
+            >
+                Components
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Buttons -->
+                <div class="space-y-4">
+                    <h3 class="font-mono text-xl font-bold uppercase">
+                        Buttons
+                    </h3>
+                    <div class="flex flex-col items-start gap-4">
+                        <button class="btn-brutal"> Primary Action </button>
+                        <button
+                            class="btn-brutal bg-text-primary text-bg-primary hover:bg-bg-primary hover:text-text-primary"
+                        >
+                            Inverted Action
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cards -->
+                <div class="space-y-4">
+                    <h3 class="font-mono text-xl font-bold uppercase">Cards</h3>
+                    <div class="card-brutal">
+                        <h4 class="font-display text-xl mb-2">Feature Card</h4>
+                        <p class="font-mono text-sm text-text-muted">
+                            This is a brutalist card component with hard shadows
+                            and borders.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Elements -->
+        <section class="space-y-6">
+            <h2
+                class="font-display text-3xl uppercase border-b-[3px] border-border-primary inline-block mb-4"
+            >
+                Forms
+            </h2>
+            <div class="max-w-md space-y-4">
+                <div class="flex flex-col gap-2">
+                    <label class="font-mono font-bold uppercase text-sm"
+                        >Email Address</label
+                    >
+                    <input
+                        type="email"
+                        placeholder="hello@example.com"
+                        class="w-full p-3 font-mono border-[3px] border-border-primary bg-bg-primary focus:outline-none focus:shadow-[4px_4px_0_var(--border-color)] transition-shadow duration-100 placeholder:text-text-muted"
+                    />
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label class="font-mono font-bold uppercase text-sm"
+                        >Message</label
+                    >
+                    <textarea
+                        rows="4"
+                        placeholder="Type something..."
+                        class="w-full p-3 font-mono border-[3px] border-border-primary bg-bg-primary focus:outline-none focus:shadow-[4px_4px_0_var(--border-color)] transition-shadow duration-100 placeholder:text-text-muted"
+                    ></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scroll Test Section -->
+        <section class="space-y-6 pt-12 border-t-[3px] border-border-primary">
+            <h2
+                class="font-display text-3xl uppercase border-b-[3px] border-border-primary inline-block mb-4"
+            >
+                Scroll Test
+            </h2>
+            <p class="font-mono">
+                Scroll down to see the glassmorphism effect on the navbar.
+            </p>
+            <div
+                class="h-[100vh] bg-bg-primary border-[3px] border-border-primary border-dashed flex items-center justify-center"
+            >
+                <span class="font-mono text-text-muted transform -rotate-45"
+                    >Spacer for scrolling</span
+                >
+            </div>
+        </section>
+    </main>
+</Layout>

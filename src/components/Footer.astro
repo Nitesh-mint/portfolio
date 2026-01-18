@@ -1,0 +1,20 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+    class="w-full border-t-[3px] border-border-primary bg-bg-primary flex justify-center"
+>
+    <div
+        class="w-full max-w-[1200px] border-x-[3px] border-border-primary p-6 flex flex-col items-center justify-center gap-2 text-center"
+    >
+        <p
+            class="font-display font-black text-xl md:text-2xl uppercase tracking-wider"
+        >
+            Made with <span class="text-text-primary">Obsession</span>
+        </p>
+        <p class="font-mono text-sm md:text-base text-text-muted">
+            &copy; {currentYear} Nitesh
+        </p>
+    </div>
+</footer>

@@ -1,0 +1,558 @@
+---
+import myProfile from "../assets/myProfile.jpg";
+import Image from "astro/components/Image.astro";
+import {
+    Github,
+    Linkedin,
+    Twitter,
+    Mail,
+    ArrowRight,
+    ArrowUp,
+    MoveUpRight,
+    Square,
+    Youtube,
+} from "lucide-react";
+const backendSkills = [
+    { description: "Designing RESTful APIs with clear resource boundaries" },
+    { description: "Authentication and authorization with user-scoped access" },
+    {
+        description:
+            "Pagination, filtering, and validation for real-world datasets",
+    },
+    {
+        description:
+            "Writing backend logic with maintainability and clarity in mind",
+    },
+];
+
+const databaseSkills = [
+    { description: "Relational data modeling and schema design" },
+    {
+        description:
+            "Understanding indexes and their impact on query performance",
+    },
+    {
+        description:
+            "Using ORMs pragmatically instead of treating them as black boxes",
+    },
+    {
+        description:
+            "Evaluating trade-offs between stored procedures and ORM logic",
+    },
+];
+
+const systemSkills = [
+    {
+        description:
+            "Working comfortably in a Linux-based development environment",
+    },
+    {
+        description:
+            "Basic understanding of processes, memory, and file systems",
+    },
+    {
+        description:
+            "Familiarity with core networking concepts relevant to web backends",
+    },
+    { description: "Interest in how systems work under the hood" },
+];
+
+const toolingSkills = [
+    { description: "Git for version control and collaborative workflows" },
+    { description: "Docker for consistent local development and deployment" },
+    {
+        description:
+            "Neovim as a primary, keyboard-driven development environment",
+    },
+];
+
+const workExperience = [
+    {
+        description: `Architected and Implemented scalable features for a high-traffic, Multi-Tenant Learning
+Management System (LMS) using ASP .NET Core, ensuring strict data isolation and
+performance across diverse client environments.`,
+    },
+    {
+        description: `Implemented Custom script injection in ASP .NET framework “Contender” like the Wordpress
+for drag and drop website creation.`,
+    },
+    {
+        description: `Collaborated in an Agile environment to deliver full-stack functionality, integrating complex
+back-end logic with modern front-end components.`,
+    },
+];
+
+const myUsages = [
+    {
+        title: "Operating System",
+        description: "MacOS",
+    },
+    {
+        title: "Mobile Phone",
+        description: "Samsung S21 FE",
+    },
+    {
+        title: "Text Editor",
+        description: "Neovim, VSCode",
+    },
+    {
+        title: "Version Control",
+        description: "Git",
+    },
+    {
+        title: "Browser",
+        description: "FireFox",
+    },
+];
+
+const links = [
+    {
+        title: "GitHub",
+        url: "https://github.com/Nitesh-mint",
+        icon: Github,
+    },
+    {
+        title: "LinkedIn",
+        url: "https://www.linkedin.com/in/nitesh-raya-614055249/",
+        icon: Linkedin,
+    },
+    {
+        title: "Youtube",
+        url: "https://www.youtube.com/@niteshraya",
+        icon: Youtube,
+    },
+];
+---
+
+<section id="home" class="relative border-b-[3px] border-border-primary">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-0 min-h-[80vh]">
+        <!-- Left Content -->
+        <div
+            class="flex flex-col p-8 md:p-8 gap-8 border-b-[3px] md:border-b-0 md:border-r-[3px] border-border-primary order-2 md:order-1"
+        >
+            <div>
+                <h1
+                    class="font-display text-white font-black text-2xl mx-2 md:text-6xl tracking-widest uppercase [-webkit-text-stroke:2px_black]"
+                >
+                    Hi! I'm ---
+                </h1>
+                <h1
+                    class="font-display font-black text-6xl md:text-8xl leading-[0.9] uppercase tracking-tighter mb-4"
+                >
+                    Nitesh
+                </h1>
+                <div class="pl-6 border-l-[6px] border-text-primary mx-2">
+                    <h2
+                        class="font-mono font-bold text-xl md:text-2xl uppercase tracking-widest text-text-muted"
+                    >
+                        Full Stack Developer
+                    </h2>
+                </div>
+            </div>
+
+            <p class="font-mono text-lg max-w-md">
+                Backend-first developer who enjoys building simple, reliable
+                systems with minimal interfaces.
+            </p>
+
+            <div class="flex flex-col gap-6">
+                <div class="flex items-center gap-4">
+                    {
+                        links.map(({ title, url, icon: Icon }) => (
+                            <a
+                                href={url}
+                                class="p-2 border-[3px] border-text-primary hover:bg-text-primary hover:text-bg-primary transition-all duration-100 shadow-[4px_4px_0_var(--text-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_var(--text-color)]"
+                                aria-label={title}
+                            >
+                                <Icon className="w-6 h-6" />
+                            </a>
+                        ))
+                    }
+
+                    <a
+                        href="#"
+                        class="p-2 border-[3px] border-text-primary hover:bg-text-primary hover:text-bg-primary transition-all duration-100 shadow-[4px_4px_0_var(--text-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_var(--text-color)]"
+                        aria-label="Email"
+                    >
+                        <Mail className="w-6 h-6" />
+                    </a>
+                </div>
+
+                <div>
+                    <a
+                        href="#connect"
+                        class="btn-brutal text-center w-full md:w-auto"
+                        >Download Resume <MoveUpRight
+                            className="inline-block w-4 h-4 ml-2"
+                        />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Image -->
+        <div
+            class="flex items-center justify-center p-8 md:p-16 order-1 md:order-2 bg-bg-primary relative group perspective-1000"
+        >
+            <!-- Decorative Background Pattern (Optional) -->
+            <div
+                class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--text-color)_1px,_transparent_1px)] bg-[length:20px_20px]"
+            >
+            </div>
+
+            <!-- Container for chaos -->
+            <div
+                id="chaos-container"
+                class="relative w-64 h-64 md:w-80 md:h-80 cursor-pointer"
+            >
+                <!-- Flying images (Hidden by default) -->
+                <div
+                    id="scatter-images"
+                    class="absolute inset-0 pointer-events-none"
+                >
+                    <!-- Images will be injected here -->
+                </div>
+
+                <div
+                    id="hero-image-btn"
+                    class="relative w-full h-full border-[3px] border-text-primary bg-bg-secondary shadow-[12px_12px_0_var(--text-color)] transition-all duration-300 hover:-translate-x-2 hover:-translate-y-2 hover:shadow-[14px_14px_0_var(--text-color)] group overflow-hidden z-10 transition-opacity duration-300"
+                >
+                    <div class="w-full h-full overflow-hidden">
+                        <Image
+                            src={myProfile}
+                            alt="Profile"
+                            class="w-full h-full object-cover grayscale contrast-125 transition-all duration-500 group-hover:grayscale-0"
+                            loading="eager"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const scatterImages = [
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?fit=crop&w=600&q=80",
+    ];
+
+    const chaosContainer = document.getElementById("chaos-container");
+    const mainImageBtn = document.getElementById("hero-image-btn");
+    const container = document.getElementById("scatter-images");
+    let isScattered = false;
+    let isDragging = false; // Flag to distinguish click vs drag
+
+    if (chaosContainer && mainImageBtn && container) {
+        // Pre-render images
+        scatterImages.forEach((src, i) => {
+            const img = document.createElement("img");
+            img.src = src;
+            img.draggable = false; // Disable native drag
+            img.className =
+                "absolute top-0 left-0 w-full h-full object-cover border-[3px] border-text-primary shadow-[8px_8px_0_var(--text-color)] transition-all duration-500 ease-out opacity-0 scale-50 pointer-events-auto cursor-grab active:cursor-grabbing";
+            img.style.transformOrigin = "center center";
+
+            // Interaction Handlers
+            let startX, startY, initialImgX, initialImgY;
+
+            img.addEventListener("mousedown", (e) => {
+                if (!isScattered) return;
+
+                // Prevent text selection
+                e.preventDefault();
+
+                isDragging = false;
+                startX = e.clientX;
+                startY = e.clientY;
+                initialImgX = parseFloat(img.dataset.x) || 0;
+                initialImgY = parseFloat(img.dataset.y) || 0;
+
+                // Disable transition during drag for responsiveness
+                img.style.transition = "none";
+                img.style.zIndex = "100"; // Bring to front
+
+                const onMouseMove = (moveEvent) => {
+                    const dx = moveEvent.clientX - startX;
+                    const dy = moveEvent.clientY - startY;
+
+                    if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+                        isDragging = true;
+                    }
+
+                    const newX = initialImgX + dx;
+                    const newY = initialImgY + dy;
+
+                    img.dataset.x = newX;
+                    img.dataset.y = newY;
+
+                    // Apply transform efficiently
+                    img.style.transform = `translate(${newX}px, ${newY}px) rotate(${img.dataset.r}deg) scale(1.5)`;
+                };
+
+                const onMouseUp = () => {
+                    // Re-enable transitions
+                    img.style.transition = "all 0.5s ease-out";
+                    img.style.zIndex = "50";
+
+                    document.removeEventListener("mousemove", onMouseMove);
+                    document.removeEventListener("mouseup", onMouseUp);
+                };
+
+                document.addEventListener("mousemove", onMouseMove);
+                document.addEventListener("mouseup", onMouseUp);
+            });
+
+            container.appendChild(img);
+        });
+
+        const imgs = container.querySelectorAll("img");
+
+        // Handle Toggle Logic
+        chaosContainer.addEventListener("click", (e) => {
+            // If we just finished a drag, do NOT toggle
+            if (isDragging) {
+                isDragging = false;
+                return;
+            }
+
+            isScattered = !isScattered;
+
+            if (isScattered) {
+                // Hide main image
+                mainImageBtn.style.opacity = "0";
+                mainImageBtn.style.pointerEvents = "none";
+
+                // Throw them!
+                imgs.forEach((img) => {
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 120 + Math.random() * 150;
+                    const randomX = Math.cos(angle) * distance;
+                    const randomY = Math.sin(angle) * distance;
+                    const randomRotate = (Math.random() - 0.5) * 40;
+
+                    // Store state
+                    img.dataset.x = randomX;
+                    img.dataset.y = randomY;
+                    img.dataset.r = randomRotate;
+
+                    img.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRotate}deg) scale(1.5)`;
+                    img.style.opacity = "1";
+                    img.style.zIndex = "50";
+                });
+            } else {
+                // Show main image
+                mainImageBtn.style.opacity = "1";
+                mainImageBtn.style.pointerEvents = "auto";
+
+                // Return them
+                imgs.forEach((img) => {
+                    img.style.transform = "translate(0, 0) scale(0.5)";
+                    img.style.opacity = "0";
+                    img.style.zIndex = "0";
+                });
+            }
+        });
+    }
+</script>
+
+<!-- About section -->
+<section
+    id="about"
+    class="px-8 md:px-8 py-8 border-b-[3px] border-border-primary"
+>
+    <h3
+        class="font-display font-black text-3xl md:text-6xl leading-[0.9] uppercase tracking-wider mb-6 text-right"
+    >
+        .About
+    </h3>
+    <p class="text-sm md:text-xl mb-6">
+        Backend-first developer with 1 year of experieince who enjoys building
+        simple, reliable systems with minimal interfaces. I focus on backend
+        development, where I design and implement the logic, databases, and APIs
+        that power applications. My goal is to create systems that are
+        efficient, scalable, and easy to maintain.
+    </p>
+    AND i write CSS too! :-)
+</section>
+
+<section
+    id="skills"
+    class="px-8 md:px-8 py-8 border-b-[3px] border-border-primary"
+>
+    <h3
+        class="font-display font-black text-3xl md:text-6xl leading-[0.9] uppercase tracking-wider mb-12"
+    >
+        Technical Skills.
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card-brutal h-full">
+            <h4
+                class="font-display text-xl mb-4 border-b-[3px] border-border-primary pb-2 inline-block"
+            >
+                Backend & APIs
+            </h4>
+            <div class="space-y-3">
+                {
+                    backendSkills.map((skill) => (
+                        <div class="flex gap-3 items-start">
+                            <Square className="w-4 h-4 mt-1.5 flex-shrink-0 fill-current" />
+                            <span class="font-mono text-sm md:text-base text-text-muted">
+                                {skill.description}
+                            </span>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="card-brutal h-full">
+            <h4
+                class="font-display text-xl mb-4 border-b-[3px] border-border-primary pb-2 inline-block"
+            >
+                Database
+            </h4>
+            <div class="space-y-3">
+                {
+                    databaseSkills.map((skill) => (
+                        <div class="flex gap-3 items-start">
+                            <Square className="w-4 h-4 mt-1.5 flex-shrink-0 fill-current" />
+                            <span class="font-mono text-sm md:text-base text-text-muted">
+                                {skill.description}
+                            </span>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="card-brutal h-full">
+            <h4
+                class="font-display text-xl mb-4 border-b-[3px] border-border-primary pb-2 inline-block"
+            >
+                System & Fundamentals
+            </h4>
+            <div class="space-y-3">
+                {
+                    systemSkills.map((skill) => (
+                        <div class="flex gap-3 items-start">
+                            <Square className="w-4 h-4 mt-1.5 flex-shrink-0 fill-current" />
+                            <span class="font-mono text-sm md:text-base text-text-muted">
+                                {skill.description}
+                            </span>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="card-brutal h-full">
+            <h4
+                class="font-display text-xl mb-4 border-b-[3px] border-border-primary pb-2 inline-block"
+            >
+                Tooling & Workflow
+            </h4>
+            <div class="space-y-3">
+                {
+                    toolingSkills.map((skill) => (
+                        <div class="flex gap-3 items-start">
+                            <Square className="w-4 h-4 mt-1.5 flex-shrink-0 fill-current" />
+                            <span class="font-mono text-sm md:text-base text-text-muted">
+                                {skill.description}
+                            </span>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Experience section-->
+<section
+    id="work"
+    class="px-8 md:px-8 py-8 border-b-[3px] border-border-primary"
+>
+    <h3
+        class="font-display font-black text-3xl md:text-6xl leading-[0.9] uppercase tracking-wider mb-6"
+    >
+        .Work
+    </h3>
+    <div class="card-brutal">
+        <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6"
+        >
+            <h4 class="font-display text-2xl md:text-4xl font-black uppercase">
+                Braindigit
+            </h4>
+            <span
+                class="font-mono text-sm md:text-base bg-text-primary text-bg-primary px-2 py-1"
+            >
+                2025 - Present
+            </span>
+        </div>
+
+        <h5
+            class="font-mono text-xl md:text-2xl font-bold mb-6 text-text-muted border-b-[3px] border-border-primary pb-2 inline-block"
+        >
+            Full Stack Developer
+        </h5>
+
+        <div class="space-y-4">
+            {
+                workExperience.map((work) => (
+                    <div class="flex gap-4 items-start">
+                        <Square className="w-5 h-5 mt-1.5 flex-shrink-0 fill-current" />
+                        <p class="font-mono text-base md:text-lg leading-relaxed">
+                            {work.description}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<section
+    id="uses"
+    class="px-8 md:px-8 py-8 border-b-[3px] border-border-primary"
+>
+    <h3
+        class="font-display font-black text-3xl md:text-6xl leading-[0.9] uppercase tracking-wider mb-8"
+    >
+        I Use..
+    </h3>
+    <div class="overflow-x-auto">
+        <table
+            class="w-full border-collapse border-[3px] border-border-primary text-left font-mono"
+        >
+            <thead>
+                <tr class="bg-text-primary text-bg-primary">
+                    <th
+                        class="p-4 border-[3px] border-border-primary text-xl font-bold uppercase w-1/3 md:w-1/4"
+                        >Category</th
+                    >
+                    <th
+                        class="p-4 border-[3px] border-border-primary text-xl font-bold uppercase"
+                        >Tool</th
+                    >
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    myUsages.map((usage) => (
+                        <tr class="hover:bg-bg-secondary transition-colors">
+                            <td class="p-4 border-[3px] border-border-primary font-bold">
+                                {usage.title}
+                            </td>
+                            <td class="p-4 border-[3px] border-border-primary text-text-muted">
+                                {usage.description}
+                            </td>
+                        </tr>
+                    ))
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
