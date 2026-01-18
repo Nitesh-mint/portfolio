@@ -12,6 +12,13 @@ import {
     Square,
     Youtube,
 } from "lucide-react";
+import img1 from "../assets/img1.jpg";
+import img2 from "../assets/img2.jpg";
+import img3 from "../assets/img3.jpg";
+import img5 from "../assets/img5.jpg";
+import img6 from "../assets/img6.jpg";
+import img7 from "../assets/img7.jpg";
+
 const backendSkills = [
     { description: "Designing RESTful APIs with clear resource boundaries" },
     { description: "Authentication and authorization with user-scoped access" },
@@ -122,6 +129,14 @@ const links = [
         icon: Youtube,
     },
 ];
+const imageSources = [
+    img1.src,
+    img2.src,
+    img3.src,
+    img5.src,
+    img6.src,
+    img7.src,
+];
 ---
 
 <section id="home" class="relative border-b-[3px] border-border-primary">
@@ -170,7 +185,7 @@ const links = [
                     }
 
                     <a
-                        href="#"
+                        href="mailto:niteshraya@protonmail.com"
                         class="p-2 border-[3px] border-text-primary hover:bg-text-primary hover:text-bg-primary transition-all duration-100 shadow-[4px_4px_0_var(--text-color)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_var(--text-color)]"
                         aria-label="Email"
                     >
@@ -231,14 +246,7 @@ const links = [
     </div>
 </section>
 
-<script>
-    const scatterImages = [
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=600&q=80",
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?fit=crop&w=600&q=80",
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?fit=crop&w=600&q=80",
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?fit=crop&w=600&q=80",
-    ];
-
+<script define:vars={{ scatterImages: imageSources }}>
     const chaosContainer = document.getElementById("chaos-container");
     const mainImageBtn = document.getElementById("hero-image-btn");
     const container = document.getElementById("scatter-images");
@@ -246,13 +254,18 @@ const links = [
     let isDragging = false; // Flag to distinguish click vs drag
 
     if (chaosContainer && mainImageBtn && container) {
+        // Select random 4 images from the available pool
+        const selectedImages = scatterImages
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 4);
+
         // Pre-render images
-        scatterImages.forEach((src, i) => {
+        selectedImages.forEach((src, i) => {
             const img = document.createElement("img");
             img.src = src;
             img.draggable = false; // Disable native drag
             img.className =
-                "absolute top-0 left-0 w-full h-full object-cover border-[3px] border-text-primary shadow-[8px_8px_0_var(--text-color)] transition-all duration-500 ease-out opacity-0 scale-50 pointer-events-auto cursor-grab active:cursor-grabbing";
+                "absolute top-0 left-0 w-full h-full object-cover border-[3px] border-text-primary shadow-[8px_8px_0_var(--text-color)] transition-all duration-700 ease-[cubic-bezier(0.33,1,0.68,1)] opacity-0 scale-50 pointer-events-auto cursor-grab active:cursor-grabbing";
             img.style.transformOrigin = "center center";
 
             // Interaction Handlers
@@ -294,7 +307,8 @@ const links = [
 
                 const onMouseUp = () => {
                     // Re-enable transitions
-                    img.style.transition = "all 0.5s ease-out";
+                    img.style.transition =
+                        "all 0.7s cubic-bezier(0.33, 1, 0.68, 1)";
                     img.style.zIndex = "50";
 
                     document.removeEventListener("mousemove", onMouseMove);
@@ -325,20 +339,36 @@ const links = [
                 mainImageBtn.style.opacity = "0";
                 mainImageBtn.style.pointerEvents = "none";
 
-                // Throw them!
-                imgs.forEach((img) => {
-                    const angle = Math.random() * Math.PI * 2;
-                    const distance = 120 + Math.random() * 150;
-                    const randomX = Math.cos(angle) * distance;
-                    const randomY = Math.sin(angle) * distance;
-                    const randomRotate = (Math.random() - 0.5) * 40;
+                // Throw them to 4 corners!
+                const spreadX = 300;
+                const spreadY = 300;
+
+                // Fixed positions for 4 images: TL, TR, BL, BR
+                let positions = [
+                    { x: -spreadX, y: -spreadY, r: -15 }, // Top-Left
+                    { x: spreadX, y: -spreadY, r: 15 }, // Top-Right
+                    { x: -spreadX, y: spreadY, r: 10 }, // Bottom-Left
+                    { x: spreadX, y: spreadY, r: -10 }, // Bottom-Right
+                ];
+
+                // Shuffle positions randomly
+                positions = positions.sort(() => Math.random() - 0.5);
+
+                imgs.forEach((img, i) => {
+                    const pos = positions[i] || positions[0]; // Fallback
+                    // Add slight random variation so it's not robotic
+                    const randomOffset = (Math.random() - 0.5) * 50;
+
+                    const finalX = pos.x + randomOffset;
+                    const finalY = pos.y + randomOffset;
+                    const finalR = pos.r + (Math.random() - 0.5) * 10;
 
                     // Store state
-                    img.dataset.x = randomX;
-                    img.dataset.y = randomY;
-                    img.dataset.r = randomRotate;
+                    img.dataset.x = finalX;
+                    img.dataset.y = finalY;
+                    img.dataset.r = finalR;
 
-                    img.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRotate}deg) scale(1.5)`;
+                    img.style.transform = `translate(${finalX}px, ${finalY}px) rotate(${finalR}deg) scale(1.5)`;
                     img.style.opacity = "1";
                     img.style.zIndex = "50";
                 });
