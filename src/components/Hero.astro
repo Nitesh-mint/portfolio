@@ -18,6 +18,7 @@ import img3 from "../assets/img3.jpg";
 import img5 from "../assets/img5.jpg";
 import img6 from "../assets/img6.jpg";
 import img7 from "../assets/img7.jpg";
+import myCV from "/cv.pdf";
 
 const backendSkills = [
     { description: "Designing RESTful APIs with clear resource boundaries" },
@@ -192,10 +193,10 @@ const imageSources = [
                         <Mail className="w-6 h-6" />
                     </a>
                 </div>
-
                 <div>
                     <a
-                        href="#connect"
+				    href={myCV}
+				    download
                         class="btn-brutal text-center w-full md:w-auto"
                         >Download Resume <MoveUpRight
                             className="inline-block w-4 h-4 ml-2"
