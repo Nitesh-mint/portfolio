@@ -155,9 +155,31 @@ import { Settings } from "lucide-react";
             });
         }, observerOptions);
 
+        // 3. Smooth Scroll Logic
+        steps.forEach((step) => {
+            step.addEventListener("click", (e) => {
+                e.preventDefault();
+                const targetId = step.getAttribute("data-target");
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const navbarHeight = 96; // Adjust based on your pt-24 (24 * 4px = 96px)
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - navbarHeight;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth",
+                    });
+
+                    // Update URL hash without jumping
+                    history.pushState(null, null, `#${targetId}`);
+                }
+            });
+        });
+
         // Observe sections
-        ["home", "about", "skills", "work", "uses"].forEach((id) => {
-            const el = document.getElementById(id);
+        ["home", "about", "skills", "work", "uses"].forEach((id) => {            const el = document.getElementById(id);
             if (el) observer.observe(el);
         });
     }

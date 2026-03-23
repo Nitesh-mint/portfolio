@@ -11,6 +11,11 @@ import {
     MoveUpRight,
     Square,
     Youtube,
+    Monitor,
+    Terminal,
+    Layers,
+    Code2,
+    GitBranch,
 } from "lucide-react";
 import img1 from "../assets/img1.jpg";
 import img2 from "../assets/img2.jpg";
@@ -92,24 +97,29 @@ back-end logic with modern front-end components.`,
 
 const myUsages = [
     {
-        title: "Operating System",
+        title: "OS",
         description: "MacOS",
+        icon: Monitor,
     },
     {
-        title: "Mobile Phone",
-        description: "Samsung S21 FE",
+        title: "Terminal",
+        description: "Ghostty",
+        icon: Terminal,
     },
     {
-        title: "Text Editor",
+        title: "Multiplexer",
+        description: "Tmux",
+        icon: Layers,
+    },
+    {
+        title: "Editor",
         description: "Neovim, VSCode",
+        icon: Code2,
     },
     {
-        title: "Version Control",
+        title: "VC",
         description: "Git",
-    },
-    {
-        title: "Browser",
-        description: "FireFox",
+        icon: GitBranch,
     },
 ];
 
@@ -147,11 +157,11 @@ const imageSources = [
             class="flex flex-col p-8 md:p-8 gap-8 border-b-[3px] md:border-b-0 md:border-r-[3px] border-border-primary order-2 md:order-1"
         >
             <div>
-                <h1
-                    class="font-display text-white font-black text-2xl mx-2 md:text-6xl tracking-widest uppercase [-webkit-text-stroke:2px_black]"
-                >
-                    Hi! I'm ---
-                </h1>
+                <!-- <h1 -->
+                <!--     class="font-display text-white font-black text-2xl mx-2 md:text-6xl tracking-widest uppercase [-webkit-text-stroke:2px_black]" -->
+                <!-- > -->
+                <!--     Hi! I'm --- -->
+                <!-- </h1> -->
                 <h1
                     class="font-display font-black text-6xl md:text-8xl leading-[0.9] uppercase tracking-tighter mb-4"
                 >
@@ -554,36 +564,21 @@ const imageSources = [
     >
         I Use..
     </h3>
-    <div class="overflow-x-auto">
-        <table
-            class="w-full border-collapse border-[3px] border-border-primary text-left font-mono"
-        >
-            <thead>
-                <tr class="bg-text-primary text-bg-primary">
-                    <th
-                        class="p-4 border-[3px] border-border-primary text-xl font-bold uppercase w-1/3 md:w-1/4"
-                        >Category</th
-                    >
-                    <th
-                        class="p-4 border-[3px] border-border-primary text-xl font-bold uppercase"
-                        >Tool</th
-                    >
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    myUsages.map((usage) => (
-                        <tr class="hover:bg-bg-secondary transition-colors">
-                            <td class="p-4 border-[3px] border-border-primary font-bold">
-                                {usage.title}
-                            </td>
-                            <td class="p-4 border-[3px] border-border-primary text-text-muted">
-                                {usage.description}
-                            </td>
-                        </tr>
-                    ))
-                }
-            </tbody>
-        </table>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+        {
+            myUsages.map((usage) => (
+                <div class="card-brutal flex flex-col items-center justify-center p-6 text-center hover:bg-bg-secondary transition-colors duration-200">
+                    <usage.icon className="w-10 h-10 mb-4" />
+                    <div class="flex flex-col gap-1">
+                        <span class="font-display text-[10px] uppercase tracking-widest text-text-muted">
+                            {usage.title}
+                        </span>
+                        <span class="font-mono font-black text-base md:text-lg uppercase">
+                            {usage.description}
+                        </span>
+                    </div>
+                </div>
+            ))
+        }
     </div>
 </section>

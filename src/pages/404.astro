@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { MoveLeft, Ghost } from "lucide-react";
+---
+
+<Layout>
+    <section class="flex flex-col items-center justify-center min-h-[80vh] px-8 text-center relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none">
+            <div class="absolute top-10 left-10 w-32 h-32 border-[3px] border-text-primary rotate-12"></div>
+            <div class="absolute bottom-20 right-20 w-48 h-48 border-[3px] border-text-primary -rotate-6"></div>
+            <div class="absolute top-1/2 right-1/4 w-16 h-16 border-[3px] border-text-primary rotate-45"></div>
+        </div>
+
+        <div class="relative mb-12">
+            <h1 class="font-display text-white font-black text-9xl md:text-[18rem] tracking-tighter uppercase [-webkit-text-stroke:4px_var(--border-color)] leading-none select-none">
+                404
+            </h1>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                <Ghost className="w-16 h-16 md:w-24 md:h-24 mb-2 animate-bounce" />
+                <h2 class="font-display font-black text-4xl md:text-6xl uppercase tracking-tighter bg-bg-primary border-[3px] border-border-primary px-4 py-2 shadow-[4px_4px_0_var(--border-color)]">
+                    NOT FOUND
+                </h2>
+            </div>
+        </div>
+
+        <div class="card-brutal max-w-xl z-10">
+            <p class="font-mono text-lg md:text-xl mb-8 leading-relaxed">
+                Looks like you've followed a broken link or entered a URL that doesn't exist on this site.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/" class="btn-brutal inline-flex items-center justify-center gap-2">
+                    <MoveLeft className="w-5 h-5" /> BACK TO HOME
+                </a>
+            </div>
+        </div>
+
+        <!-- Brutalist floating text -->
+        <div class="absolute bottom-10 left-10 font-mono font-bold text-sm uppercase tracking-[0.5em] opacity-30 hidden md:block">
+            Error // Page Not Found
+        </div>
+        <div class="absolute top-10 right-10 font-mono font-bold text-sm uppercase tracking-[0.5em] opacity-30 hidden md:block">
+            404 // Lost in space
+        </div>
+    </section>
+</Layout>
