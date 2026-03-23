@@ -1,5 +1,6 @@
 ---
-import { Sun, Moon, Menu } from "lucide-react";
+import { Sun, Moon, Menu, ChevronRight } from "lucide-react";
+import VersionPicker from "./VersionPicker.astro";
 ---
 
 <nav
@@ -16,17 +17,9 @@ import { Sun, Moon, Menu } from "lucide-react";
         </a>
 
         <!-- Desktop Menu -->
-        <div class="hidden md:flex items-center gap-6">
-            <!-- <ul class="flex gap-4 font-bold font-mono uppercase text-base">
-                <li>
-                    <a
-                        href="/verify-css"
-                        class="px-4 py-2 border-[3px] border-transparent hover:border-border-primary hover:bg-text-primary hover:text-bg-primary transition-all duration-100"
-                    >
-                        Verify
-                    </a>
-                </li>
-            </ul> -->
+        <div class="hidden md:flex items-center gap-6 h-full">
+            <!-- Version Switcher (Desktop) -->
+            <VersionPicker />
 
             <!-- Theme Toggle -->
             <button
@@ -83,13 +76,25 @@ import { Sun, Moon, Menu } from "lucide-react";
             >
                 Work
             </a>
-            <!-- <a
-                href="/verify-css"
-                class="block text-center p-4 text-xl font-bold font-mono uppercase text-text-primary hover:bg-text-primary hover:text-bg-primary transition-colors"
+            
+            <!-- Versions in Mobile Menu -->
+            <div class="bg-text-primary text-bg-primary p-2 font-display text-xs text-center uppercase tracking-widest">
+                Switch Version
+            </div>
+            <a
+                href="https://ubuntu.niteshraya.com.np"
+                class="flex items-center justify-center gap-2 p-4 border-b border-border-primary text-base font-bold font-mono uppercase text-text-primary hover:bg-bg-secondary transition-colors"
             >
-                Verify
-            </a> -->
+                V1.0 (Ubuntu) <ChevronRight className="w-4 h-4" />
+            </a>
+            <div
+                class="p-4 text-center text-base font-bold font-mono uppercase text-text-muted bg-bg-secondary opacity-50"
+            >
+                V2.0 (Neobrutalist) - ACTIVE
+            </div>
         </div>
+    </div>
+</nav>
     </div>
 </nav>
 
