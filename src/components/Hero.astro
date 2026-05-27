@@ -1,6 +1,7 @@
 ---
 import myProfile from "../assets/myProfile.jpg";
 import Image from "astro/components/Image.astro";
+import ProjectList from "./ProjectList.astro";
 import {
     Github,
     Linkedin,
@@ -148,6 +149,19 @@ const imageSources = [
     img6.src,
     img7.src,
 ];
+
+let current = null;
+try {
+    const response = await fetch("https://raw.githubusercontent.com/Nitesh-mint/portfolio-data/refs/heads/main/data.json");
+    if (response.ok) {
+        const rawText = await response.text();
+        const cleanedText = rawText.replace(/,\s*([\]}])/g, "$1");
+        const data = JSON.parse(cleanedText);
+        current = data.current || null;
+    }
+} catch (e) {
+    console.error("Error fetching current status in Hero:", e);
+}
 ---
 
 <section id="home" class="relative border-b-[3px] border-border-primary">
@@ -214,6 +228,98 @@ const imageSources = [
                     </a>
                 </div>
             </div>
+            
+            {current && (
+                <div class="mt-8 font-mono text-xs md:text-sm pl-4 border-l-[3px] border-text-primary py-2 space-y-4">
+                    <!-- Prompt 1: status -->
+                    <div>
+                        <div class="flex items-center gap-1.5 text-text-muted">
+                            <span class="text-emerald-500 dark:text-emerald-400 font-bold">nitesh</span>
+                            <span>@</span>
+                            <span class="text-blue-500 dark:text-blue-400 font-bold">portfolio</span>
+                            <span>:~$</span>
+                            <span class="text-text-primary font-black">curl --silent /api/status</span>
+                        </div>
+                        <div class="mt-1.5 flex items-center gap-2 pl-3">
+                            <span class="inline-block w-2 h-2 rounded-full bg-green-500 animate-ping"></span>
+                            <span class="font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                                {current.status.replace(/_/g, " ")}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Prompt 2: focus -->
+                    <div>
+                        <div class="flex items-center gap-1.5 text-text-muted">
+                            <span class="text-emerald-500 dark:text-emerald-400 font-bold">nitesh</span>
+                            <span>@</span>
+                            <span class="text-blue-500 dark:text-blue-400 font-bold">portfolio</span>
+                            <span>:~$</span>
+                            <span class="text-text-primary font-black">cat focus.txt</span>
+                        </div>
+                        <div class="mt-1.5 pl-3 text-text-primary font-medium leading-relaxed max-w-md">
+                            {current.focus}
+                        </div>
+                    </div>
+
+                    <!-- Prompt 3: learning -->
+                    {current.learning && current.learning.length > 0 && (
+                        <div>
+                            <div class="flex items-center gap-1.5 text-text-muted">
+                                <span class="text-emerald-500 dark:text-emerald-400 font-bold">nitesh</span>
+                                <span>@</span>
+                                <span class="text-blue-500 dark:text-blue-400 font-bold">portfolio</span>
+                                <span>:~$</span>
+                                <span class="text-text-primary font-black">echo $LEARNING</span>
+                            </div>
+                            <div class="mt-1.5 pl-3 flex flex-wrap gap-x-3 gap-y-1 text-text-muted font-bold">
+                                {current.learning.map((item) => (
+                                    <span class="text-text-primary">
+                                        &bull; {item}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    <!-- Prompt 4: active projects -->
+                    {current.working_on && current.working_on.length > 0 && (
+                        <div>
+                            <div class="flex items-center gap-1.5 text-text-muted">
+                                <span class="text-emerald-500 dark:text-emerald-400 font-bold">nitesh</span>
+                                <span>@</span>
+                                <span class="text-blue-500 dark:text-blue-400 font-bold">portfolio</span>
+                                <span>:~$</span>
+                                <span class="text-text-primary font-black">ls -l current_work/</span>
+                            </div>
+                            <div class="mt-1.5 pl-3 space-y-3">
+                                {current.working_on.map((project) => (
+                                    <div class="border-l-2 border-border-primary/20 pl-2 py-0.5">
+                                        <div class="font-black text-text-primary flex items-center gap-2 flex-wrap">
+                                            <span>{project.title}</span>
+                                            {project.url && (
+                                                <a 
+                                                    href={project.url} 
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer"
+                                                    class="text-[10px] text-blue-600 dark:text-blue-400 underline hover:text-text-primary font-bold cursor-pointer"
+                                                >
+                                                    [view repo]
+                                                </a>
+                                            )}
+                                        </div>
+                                        {project.description && (
+                                            <p class="text-text-muted mt-1 leading-snug text-xs max-w-sm">
+                                                {project.description}
+                                            </p>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
 
         <!-- Right Image -->
@@ -560,6 +666,8 @@ const imageSources = [
         </div>
     </div>
 </section>
+
+<ProjectList />
 
 <section
     id="uses"
