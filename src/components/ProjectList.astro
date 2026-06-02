@@ -1,5 +1,5 @@
 ---
-import { Github, Globe, Calendar, Folder } from "lucide-react";
+import { Github, Globe, Calendar, Folder, LayoutGrid, List } from "lucide-react";
 
 let projects = [];
 let errorMsg = "";
@@ -61,25 +61,46 @@ const getBadgeStyles = (index: number) => {
 
     {!errorMsg && (
         <>
-            <!-- Dynamic Filters -->
-            <div class="flex flex-wrap gap-2.5 mb-10">
-                <button
-                    class="project-filter-btn px-4 py-2 border-[3px] border-border-primary font-mono text-xs font-black uppercase cursor-pointer transition-all duration-100 shadow-[3px_3px_0_var(--border-color)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_var(--border-color)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none bg-text-primary text-bg-primary"
-                    data-filter="all"
-                >
-                    All ({projects.length})
-                </button>
-                {filterCategories.filter(f => f !== "all").map((filterName, idx) => (
+            <!-- Filter & View Switcher Bar -->
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-10">
+                <!-- Dynamic Filters -->
+                <div class="flex flex-wrap gap-2.5">
                     <button
-                        class="project-filter-btn px-4 py-2 border-[3px] border-border-primary font-mono text-xs font-black uppercase cursor-pointer transition-all duration-100 shadow-[3px_3px_0_var(--border-color)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_var(--border-color)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none bg-bg-primary text-text-primary"
-                        data-filter={filterName}
+                        class="project-filter-btn px-4 py-2 border-[3px] border-border-primary font-mono text-xs font-black uppercase cursor-pointer transition-all duration-100 shadow-[3px_3px_0_var(--border-color)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_var(--border-color)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none bg-text-primary text-bg-primary"
+                        data-filter="all"
                     >
-                        {filterName}
+                        All ({projects.length})
                     </button>
-                ))}
+                    {filterCategories.filter(f => f !== "all").map((filterName, idx) => (
+                        <button
+                            class="project-filter-btn px-4 py-2 border-[3px] border-border-primary font-mono text-xs font-black uppercase cursor-pointer transition-all duration-100 shadow-[3px_3px_0_var(--border-color)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_var(--border-color)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none bg-bg-primary text-text-primary"
+                            data-filter={filterName}
+                        >
+                            {filterName}
+                        </button>
+                    ))}
+                </div>
+
+                <!-- View Toggle Buttons -->
+                <div class="flex items-center self-start lg:self-center border-[3px] border-border-primary bg-bg-primary shadow-[4px_4px_0_var(--border-color)] select-none shrink-0">
+                    <button
+                        id="view-grid-btn"
+                        class="flex items-center gap-2 px-3 py-2 border-r-[3px] border-border-primary font-mono text-xs font-black uppercase cursor-pointer transition-colors duration-100 bg-text-primary text-bg-primary"
+                        aria-label="Grid View"
+                    >
+                        <LayoutGrid className="w-4 h-4" /> Grid
+                    </button>
+                    <button
+                        id="view-list-btn"
+                        class="flex items-center gap-2 px-3 py-2 font-mono text-xs font-black uppercase cursor-pointer transition-colors duration-100 bg-bg-primary text-text-primary hover:bg-text-primary/10"
+                        aria-label="List View"
+                    >
+                        <List className="w-4 h-4" /> List
+                    </button>
+                </div>
             </div>
 
-            <!-- Project Grid -->
+            <!-- Project Grid View (Default) -->
             <div
                 id="projects-grid"
                 class="grid grid-cols-1 md:grid-cols-2 gap-8"
@@ -163,6 +184,84 @@ const getBadgeStyles = (index: number) => {
                     </div>
                 ))}
             </div>
+
+            <!-- Project Compact List View (Hidden by default) -->
+            <div
+                id="projects-list"
+                class="hidden flex-col border-[3px] border-border-primary divide-y-[3px] divide-border-primary shadow-[8px_8px_0_var(--border-color)] bg-bg-primary"
+            >
+                {projects.map((project, index) => (
+                    <div
+                        class="project-list-item flex flex-col md:flex-row md:items-center justify-between p-6 bg-bg-primary hover:bg-bg-secondary transition-all duration-150 group"
+                        data-techs={JSON.stringify(project.tech || [])}
+                        data-tags={JSON.stringify(project.tags || [])}
+                    >
+                        <!-- Left: Info & Description -->
+                        <div class="flex flex-col gap-1 md:max-w-[45%]">
+                            <div class="flex items-center gap-3">
+                                <span class="font-mono text-xs font-bold text-text-muted">
+                                    {project.year}
+                                </span>
+                                <span
+                                    class={`font-mono text-[9px] px-1.5 py-0.5 border border-border-primary font-bold uppercase shadow-[1.5px_1.5px_0_var(--border-color)] ${
+                                        project.status === "completed"
+                                            ? "bg-emerald-400 text-black dark:bg-emerald-600 dark:text-white"
+                                            : "bg-amber-300 text-black dark:bg-amber-500"
+                                    }`}
+                                >
+                                    {project.status.replace("_", " ")}
+                                </span>
+                            </div>
+                            <h4 class="font-display text-lg md:text-xl font-black uppercase tracking-tight group-hover:translate-x-1 transition-transform">
+                                {project.title}
+                            </h4>
+                            <p class="font-mono text-xs text-text-muted leading-relaxed">
+                                {project.description}
+                            </p>
+                        </div>
+
+                        <!-- Middle: Badges -->
+                        <div class="flex flex-wrap gap-1.5 my-4 md:my-0 md:max-w-[35%]">
+                            {(project.tech || []).map((tech) => (
+                                <span class="font-mono text-[10px] px-2 py-0.5 border border-border-primary bg-bg-secondary text-text-primary">
+                                    #{tech}
+                                </span>
+                            ))}
+                            {(project.tags || []).map((tag, tagIdx) => (
+                                <span class={`font-mono text-[10px] px-2 py-0.5 border border-border-primary font-black uppercase ${getBadgeStyles(tagIdx + index)}`}>
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+
+                        <!-- Right: Link Actions -->
+                        <div class="flex gap-3 md:max-w-[15%]">
+                            {project.links?.github && (
+                                <a
+                                    href={project.links.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="p-2.5 border-[2px] border-border-primary bg-bg-primary text-text-primary hover:bg-text-primary hover:text-bg-primary transition-all duration-100 shadow-[3px_3px_0_var(--border-color)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_var(--border-color)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none cursor-pointer"
+                                    aria-label="GitHub Repository"
+                                >
+                                    <Github className="w-4 h-4" />
+                                </a>
+                            )}
+                            {project.links?.live && (
+                                <a
+                                    href={project.links.live}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="p-2.5 border-[2px] border-border-primary bg-bg-primary text-text-primary hover:bg-text-primary hover:text-bg-primary transition-all duration-100 shadow-[3px_3px_0_var(--border-color)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_var(--border-color)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none cursor-pointer"
+                                    aria-label="Live Demo"
+                                >
+                                    <Globe className="w-4 h-4" />
+                                </a>
+                            )}
+                        </div>
+                    </div>
+                ))}
+            </div>
         </>
     )}
 </section>
@@ -170,10 +269,75 @@ const getBadgeStyles = (index: number) => {
 <script>
     const filterButtons = document.querySelectorAll(".project-filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
+    const projectListItems = document.querySelectorAll(".project-list-item");
+    const gridBtn = document.getElementById("view-grid-btn");
+    const listBtn = document.getElementById("view-list-btn");
+    const gridContainer = document.getElementById("projects-grid");
+    const listContainer = document.getElementById("projects-list");
 
+    let currentFilter = "all";
+
+    function applyFilter() {
+        // Filter Grid Cards
+        projectCards.forEach((cardEl) => {
+            const card = cardEl as HTMLElement;
+            if (currentFilter === "all") {
+                card.style.display = "flex";
+                void card.offsetHeight;
+                card.style.opacity = "1";
+                card.style.transform = "scale(1)";
+            } else {
+                const techs = JSON.parse(card.getAttribute("data-techs") || "[]");
+                const tags = JSON.parse(card.getAttribute("data-tags") || "[]");
+
+                if (techs.includes(currentFilter) || tags.includes(currentFilter)) {
+                    card.style.display = "flex";
+                    void card.offsetHeight;
+                    card.style.opacity = "1";
+                    card.style.transform = "scale(1)";
+                } else {
+                    card.style.opacity = "0";
+                    card.style.transform = "scale(0.95)";
+                    setTimeout(() => {
+                        if (card.style.opacity === "0") {
+                            card.style.display = "none";
+                        }
+                    }, 150);
+                }
+            }
+        });
+
+        // Filter List Items
+        projectListItems.forEach((itemEl) => {
+            const item = itemEl as HTMLElement;
+            if (currentFilter === "all") {
+                item.style.display = "flex";
+                void item.offsetHeight;
+                item.style.opacity = "1";
+            } else {
+                const techs = JSON.parse(item.getAttribute("data-techs") || "[]");
+                const tags = JSON.parse(item.getAttribute("data-tags") || "[]");
+
+                if (techs.includes(currentFilter) || tags.includes(currentFilter)) {
+                    item.style.display = "flex";
+                    void item.offsetHeight;
+                    item.style.opacity = "1";
+                } else {
+                    item.style.opacity = "0";
+                    setTimeout(() => {
+                        if (item.style.opacity === "0") {
+                            item.style.display = "none";
+                        }
+                    }, 150);
+                }
+            }
+        });
+    }
+
+    // Filter Listeners
     filterButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
-            const filterValue = btn.getAttribute("data-filter");
+            currentFilter = btn.getAttribute("data-filter") || "all";
 
             // Reset all buttons to default state
             filterButtons.forEach((b) => {
@@ -185,42 +349,39 @@ const getBadgeStyles = (index: number) => {
             btn.classList.remove("bg-bg-primary", "text-text-primary");
             btn.classList.add("bg-text-primary", "text-bg-primary");
 
-            // Filter project cards with visibility settings
-            projectCards.forEach((cardEl) => {
-                const card = cardEl as HTMLElement;
-                if (filterValue === "all") {
-                    card.style.display = "flex";
-                    // Trigger reflow to run animations
-                    void card.offsetHeight;
-                    card.style.opacity = "1";
-                    card.style.transform = "scale(1)";
-                } else {
-                    const techs = JSON.parse(card.getAttribute("data-techs") || "[]");
-                    const tags = JSON.parse(card.getAttribute("data-tags") || "[]");
-
-                    if (techs.includes(filterValue) || tags.includes(filterValue)) {
-                        card.style.display = "flex";
-                        void card.offsetHeight;
-                        card.style.opacity = "1";
-                        card.style.transform = "scale(1)";
-                    } else {
-                        card.style.opacity = "0";
-                        card.style.transform = "scale(0.95)";
-                        // Hide after transition finishes
-                        setTimeout(() => {
-                            if (card.style.opacity === "0") {
-                                card.style.display = "none";
-                            }
-                        }, 150);
-                    }
-                }
-            });
+            applyFilter();
         });
+    });
+
+    // View Listeners
+    gridBtn?.addEventListener("click", () => {
+        gridBtn.classList.remove("bg-bg-primary", "text-text-primary");
+        gridBtn.classList.add("bg-text-primary", "text-bg-primary");
+        
+        listBtn?.classList.remove("bg-text-primary", "text-bg-primary");
+        listBtn?.classList.add("bg-bg-primary", "text-text-primary");
+
+        if (gridContainer) gridContainer.style.display = "grid";
+        if (listContainer) listContainer.style.display = "none";
+    });
+
+    listBtn?.addEventListener("click", () => {
+        listBtn.classList.remove("bg-bg-primary", "text-text-primary");
+        listBtn.classList.add("bg-text-primary", "text-bg-primary");
+
+        gridBtn?.classList.remove("bg-text-primary", "text-bg-primary");
+        gridBtn?.classList.add("bg-bg-primary", "text-text-primary");
+
+        if (gridContainer) gridContainer.style.display = "none";
+        if (listContainer) {
+            listContainer.style.display = "flex";
+            listContainer.style.flexDirection = "column";
+        }
     });
 </script>
 
 <style>
-    .project-card {
-        transition: opacity 150ms ease, transform 150ms ease, border-color 100ms ease, box-shadow 100ms ease;
+    .project-card, .project-list-item {
+        transition: opacity 150ms ease, transform 150ms ease, border-color 100ms ease, box-shadow 100ms ease, background-color 100ms ease;
     }
 </style>
