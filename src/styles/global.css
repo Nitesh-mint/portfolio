@@ -9,6 +9,8 @@
     --color-accent: var(--accent-color);
     --color-accent-hover: var(--accent-hover);
     --color-border-primary: var(--border-color);
+    --color-terminal-user: var(--terminal-user);
+    --color-terminal-host: var(--terminal-host);
 
     /* Fonts */
     --font-sans: "Space Mono", monospace;
@@ -27,6 +29,8 @@
     --accent-color: #000000;
     --accent-hover: #333333;
     --border-color: #000000;
+    --terminal-user: #10b981;
+    --terminal-host: #0891b2;
 
     --font-sans: "Space Mono", monospace;
     --font-display: "Archivo Black", sans-serif;
@@ -39,6 +43,8 @@
     --accent-color: #ffffff;
     --accent-hover: #cccccc;
     --border-color: #ffffff;
+    --terminal-user: #34d399;
+    --terminal-host: #67e8f9;
 }
 
 /* Utility classes for Brutalist look */
@@ -63,9 +69,34 @@
     .card-brutal:hover {
         @apply -translate-x-[2px] -translate-y-[2px] shadow-[10px_10px_0_var(--border-color)];
     }
+
+    .border-offset {
+        @apply relative border-[3px] border-border-primary bg-bg-primary;
+    }
+
+    .border-offset::after {
+        content: "";
+        @apply absolute inset-0 border-[3px] border-border-primary -z-10;
+        transform: translate(6px, 6px);
+    }
+
+    .cursor-blink {
+        animation: cursor-blink 1s steps(1) infinite;
+    }
+
+    @keyframes cursor-blink {
+        50% {
+            opacity: 0;
+        }
+    }
 }
 
 /* Custom Cursor & Selection */
+html,
+body {
+    overflow-x: hidden;
+}
+
 body {
     cursor: crosshair;
 }

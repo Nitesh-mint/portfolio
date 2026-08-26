@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "name": "Nitesh Raya",
+    "title": "Full Stack Developer",
+    "bio": "Backend-first developer who enjoys building simple, reliable systems with minimal interfaces.",
+    "avatar": "https://github.com/Nitesh-mint.png",
+    "email": "contact@niteshraya.com.np",
+    "location": "Kathmandu, Nepal",
+    "links": {
+      "github": "https://github.com/Nitesh-mint",
+      "linkedin": "https://linkedin.com/in/nitesh-raya-614055249",
+      "portfolio": "https://niteshraya.com.np",
+      "twitter": "",
+      "youtube": "https://www.youtube.com/@niteshraya"
+    }
+  },
+  "current": {
+    "status": "open_to_work",
+    "focus": "Learning C# in-depth, Leetcode and building fun projects and writing shitty games",
+    "learning": [
+      "C# in-depth",
+      "DSA",
+      "Game Development"  
+    ],
+    "working_on": [
+      {
+        "title": "Basic classic games",
+        "description": "Writing simple classic games like snake in C# using Raylib",
+        "url": "https://github.com/Nitesh-mint/ClassicSnakeGame"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "snake-game",
+      "title": "Snake Game",
+      "description": "A very simple snake game written in C# using Raylib",
+      "tech": [
+        "C#",
+        "Raylib"
+      ],
+      "tags": [
+        "Game"
+      ],
+      "links": {
+        "github": "https://github.com/Nitesh-mint/ClassicSnakeGame",
+        "live": ""
+      },
+      "status": "completed",
+      "featured": true,
+      "year": 2026,
+      "images": [
+        "/projects/snake-game/1.png",
+        "/projects/snake-game/2.png"
+      ]
+    },
+    {
+      "id": "vibe-gif-search",
+      "title": "AI Vibe Gif Search",
+      "description": "Wanted a gif search tool that understood my feelings, didn't find so I built one!",
+      "tech": [
+        "JavaScript"
+      ],
+      "tags": [
+        "extension"
+      ],
+      "links": {
+        "github": "https://github.com/Nitesh-mint/Vibe-GIF-Search",
+        "live": "https://addons.mozilla.org/en-US/firefox/addon/ai-vibe-gif-search/"
+      },
+      "status": "in_progress",
+      "featured": true,
+      "year": 2026,
+      "images": [
+        "/projects/vibe-gif-search/1.png",
+        "/projects/vibe-gif-search/2.png"
+      ]
+    },
+    {
+      "id": "my-drive",
+      "title": "My Drive",
+      "description": "Searching and finding the best ride as a rider in Indrive was time consuming, so I built a tool for me that does it!",
+      "tech": [
+        "Kotlin",
+        "Accessibility"
+      ],
+      "tags": [
+        "Android App"
+      ],
+      "links": {
+        "github": "https://github.com/Nitesh-mint/MyDrive",
+        "live": ""
+      },
+      "status": "in_progress",
+      "featured": true,
+      "year": 2026,
+      "images": [
+        "/projects/my-drive/1.jpeg",
+        "/projects/my-drive/2.jpeg"
+      ]
+    },
+    {
+      "id": "dsa-c",
+      "title": "Data structure in C",
+      "description": "This repo contains the data structure implement from scratch in C",
+      "tech": [
+        "C",
+        "DSA"
+      ],
+      "tags": [
+        "C"
+      ],
+      "links": {
+        "github": "https://github.com/Nitesh-mint/c-but-dangerous",
+        "live": ""
+      },
+      "status": "in_progress",
+      "featured": true,
+      "year": 2026,
+      "images": []
+    }
+  ],
+  "skills": {
+    "Languages": [
+      "C#",
+      "JavaScript",
+      "TypeScript",
+      "HTML",
+      "CSS",
+      "SQL",
+      "Python",
+      "C",
+      "Java"
+    ],
+    "Frameworks": [
+      ".NET",
+      "ASP.NET Core",
+      "Entity Framework Core",
+      "React",
+      "Django"
+    ],
+    "Tools": [
+      "Git",
+      "GitHub",
+      "Visual Studio",
+      "VS Code",
+      "Postman",
+      "Vim"
+    ],
+    "Databases": [
+      "SQL Server",
+      "MySQL",
+      "PostgreSQL"
+    ]
+  }
+}

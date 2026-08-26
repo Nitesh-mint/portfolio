@@ -16,6 +16,16 @@ import VersionPicker from "./VersionPicker.astro";
             N
         </a>
 
+        <div
+            class="hidden sm:flex items-center gap-2 border-[3px] border-border-primary px-3 py-1.5 rounded-full font-mono text-xs font-bold uppercase"
+        >
+            <span
+                aria-hidden="true"
+                class="inline-block w-2 h-2 rounded-full bg-green-500 animate-ping"
+            ></span>
+            Available for new project
+        </div>
+
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center gap-6 h-full">
             <!-- Version Switcher (Desktop) -->
@@ -99,8 +109,6 @@ import VersionPicker from "./VersionPicker.astro";
                 V2.0 (Neobrutalist) - ACTIVE
             </div>
         </div>
-    </div>
-</nav>
     </div>
 </nav>
 

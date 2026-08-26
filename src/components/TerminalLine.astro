@@ -1,0 +1,20 @@
+---
+interface Props {
+    command: string;
+    user?: string;
+    host?: string;
+}
+const { command, user = "nitesh", host = "portfolio" } = Astro.props;
+---
+
+<div
+    class="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-1.5 text-text-muted"
+>
+    <span aria-hidden="true" class="flex items-baseline gap-1.5 shrink-0">
+        <span class="text-terminal-user font-bold">{user}</span>
+        <span>@</span>
+        <span class="text-terminal-host font-bold">{host}</span>
+        <span>:~$</span>
+    </span>
+    <span class="text-text-primary font-black break-words">{command}</span>
+</div>
